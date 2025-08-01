@@ -5,7 +5,7 @@ import com.green.gallery_jwt_jpa.account.etc.AccountConstants;
 import com.green.gallery_jwt_jpa.cart.model.CartDeleteReq;
 import com.green.gallery_jwt_jpa.cart.model.CartGetRes;
 import com.green.gallery_jwt_jpa.cart.model.CartPostReq;
-import com.green.gallery_jwt_jpa.common.util.HttpUtils;
+import com.green.gallery_jwt_jpa.config.util.HttpUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

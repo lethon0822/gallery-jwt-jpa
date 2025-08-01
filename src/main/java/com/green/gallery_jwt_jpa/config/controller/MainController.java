@@ -1,4 +1,4 @@
-package com.green.gallery_jwt_jpa.common.controller;
+package com.green.gallery_jwt_jpa.config.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

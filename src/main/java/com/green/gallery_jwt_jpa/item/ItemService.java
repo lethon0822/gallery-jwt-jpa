@@ -1,6 +1,6 @@
 package com.green.gallery_jwt_jpa.item;
 
-import com.green.gallery_jwt_jpa.common.util.MyFileUtils;
+import com.green.gallery_jwt_jpa.config.util.MyFileUtils;
 import com.green.gallery_jwt_jpa.item.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

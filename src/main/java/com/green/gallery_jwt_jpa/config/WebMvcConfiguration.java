@@ -1,4 +1,4 @@
-package com.green.gallery_jwt_jpa.common;
+package com.green.gallery_jwt_jpa.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

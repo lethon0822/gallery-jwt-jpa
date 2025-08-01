@@ -5,7 +5,7 @@ import com.green.gallery_jwt_jpa.account.etc.AccountConstants;
 import com.green.gallery_jwt_jpa.account.model.AccountJoinReq;
 import com.green.gallery_jwt_jpa.account.model.AccountLoginReq;
 import com.green.gallery_jwt_jpa.account.model.AccountLoginRes;
-import com.green.gallery_jwt_jpa.common.util.HttpUtils;
+import com.green.gallery_jwt_jpa.config.util.HttpUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

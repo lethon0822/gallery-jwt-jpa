@@ -1,4 +1,4 @@
-package com.green.gallery_jwt_jpa.common.util;
+package com.green.gallery_jwt_jpa.config.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 

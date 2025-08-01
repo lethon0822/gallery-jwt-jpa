@@ -1,6 +1,6 @@
 package com.green.gallery_jwt_jpa.order;
 
-import com.green.gallery_jwt_jpa.common.util.HttpUtils;
+import com.green.gallery_jwt_jpa.config.util.HttpUtils;
 import com.green.gallery_jwt_jpa.order.model.*;
 import com.green.gallery_jwt_jpa.account.etc.AccountConstants;
 import jakarta.servlet.http.HttpServletRequest;
