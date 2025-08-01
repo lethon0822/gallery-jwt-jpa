@@ -34,7 +34,8 @@ public class AccountService {
         //로그인 성공!!! 로그인 한 사용자의 role가져오기~
         //호출해주세요
         List<String> roles = accountMapper.findAllRolesByMemberId(res.getId());
-        JwtUser jwtUser = new JwtUser(res.getId(), roles);
+        JwtUser jwtuser = new JwtUser(res.getId(), roles);
+        res.setJwtUser(jwtuser);
         return res;
     }
 

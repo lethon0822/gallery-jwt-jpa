@@ -7,6 +7,7 @@ import com.green.gallery_jwt_jpa.account.model.AccountJoinReq;
 import com.green.gallery_jwt_jpa.account.model.AccountLoginReq;
 import com.green.gallery_jwt_jpa.account.model.AccountLoginRes;
 import com.green.gallery_jwt_jpa.config.util.HttpUtils;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -34,12 +35,12 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(HttpServletRequest httpReq, @RequestBody AccountLoginReq req) {
+    public ResponseEntity<?> login(HttpServletResponse response, @RequestBody AccountLoginReq req) {
         AccountLoginRes result = accountService.login(req);
         if(result == null) {
             return ResponseEntity.notFound().build();
         }
-
+        jwtTokenManager.issue(response, result.getJwtUser());
 
         //세션 처리
         //HttpUtils.setSession(httpReq, AccountConstants.MEMBER_ID_NAME, result.getId());
