@@ -1,6 +1,12 @@
 constants:
   file:
     directory: D:\ParkDoheum\2025\2025-04-msa\backend\upload
+  jwt:
+    issuer: green502@green.com #??? ??
+    claim-key: signedUser
+    secret-key: DaeguGreenArtAcademyClass502MsaClassFightingkkkkkk
+
+
 
 spring:
   application:
