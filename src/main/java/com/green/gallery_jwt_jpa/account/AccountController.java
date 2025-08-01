@@ -1,5 +1,6 @@
 package com.green.gallery_jwt_jpa.account;
 
+import com.green.gallery_jwt_jpa.config.jwt.JwtTokenManager;
 import jakarta.servlet.http.HttpServletRequest;
 import com.green.gallery_jwt_jpa.account.etc.AccountConstants;
 import com.green.gallery_jwt_jpa.account.model.AccountJoinReq;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/account")
 public class AccountController {
     private final AccountService accountService;
+    private final JwtTokenManager jwtTokenManager;
 
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody AccountJoinReq req) {
@@ -37,8 +39,10 @@ public class AccountController {
         if(result == null) {
             return ResponseEntity.notFound().build();
         }
+
+
         //세션 처리
-        HttpUtils.setSession(httpReq, AccountConstants.MEMBER_ID_NAME, result.getId());
+        //HttpUtils.setSession(httpReq, AccountConstants.MEMBER_ID_NAME, result.getId());
 
         return ResponseEntity.ok(result);
     }

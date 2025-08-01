@@ -8,4 +8,6 @@ public class AccountLoginRes {
     private int id;
     @JsonIgnore
     private String loginPw;
+
+
 }

@@ -3,10 +3,13 @@ package com.green.gallery_jwt_jpa.account;
 import com.green.gallery_jwt_jpa.account.model.AccountJoinReq;
 import com.green.gallery_jwt_jpa.account.model.AccountLoginReq;
 import com.green.gallery_jwt_jpa.account.model.AccountLoginRes;
+import com.green.gallery_jwt_jpa.config.model.JwtUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -28,7 +31,10 @@ public class AccountService {
         if(res == null || !BCrypt.checkpw(req.getLoginPw(), res.getLoginPw())) {
             return null; //return null; 처리
         }
-
+        //로그인 성공!!! 로그인 한 사용자의 role가져오기~
+        //호출해주세요
+        List<String> roles = accountMapper.findAllRolesByMemberId(res.getId());
+        JwtUser jwtUser = new JwtUser(res.getId(), roles);
         return res;
     }
 
