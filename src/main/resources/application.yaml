@@ -30,8 +30,20 @@ spring:
   servlet:
     multipart:
       max-file-size: 15MB
-
+  jpa:
+    database: mysql
+    hibernate:
+      #ddl-auto: create #entity? ?? ????? drop ? create ??.
+      ddl-auto: create #entity? ??? create, ?? ???? entity? ??? ??? ???? ?? ??
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+        format_sql: true #?? ?? ? ????? ???
+        order_updates: true
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: mappers/**/*.xml
+server:
+  port: 8989
