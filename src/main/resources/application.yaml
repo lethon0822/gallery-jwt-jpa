@@ -35,6 +35,3 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: mappers/**/*.xml
-
-server:
-  port: 8989
