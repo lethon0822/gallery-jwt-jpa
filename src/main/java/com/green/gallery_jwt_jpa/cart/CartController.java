@@ -32,6 +32,7 @@ public class CartController {
 
     @GetMapping
     public ResponseEntity<?> getCart(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+        log.info("memberId: {}", userPrincipal.getMemberId());
         List<CartGetRes> result = cartService.findAll(userPrincipal.getMemberId());
         return ResponseEntity.ok(result);
     }
