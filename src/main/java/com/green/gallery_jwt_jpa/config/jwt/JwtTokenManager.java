@@ -94,6 +94,7 @@ public class JwtTokenManager {
         String accessToken = getAccessTokenFromCookie(request);
         if(accessToken == null){ return null; }
         JwtUser jwtUser = getJwtUserFromToken(accessToken);
+        if(jwtUser == null) { return null; }
         UserPrincipal userPrincipal = new UserPrincipal(jwtUser.getSignedUserId(), jwtUser.getRoles());
         return new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
     }
