@@ -27,31 +27,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/pic/**")
                 .addResourceLocations("file:" + uploadPath);
-
-        registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/")
-                .resourceChain(true)
-                .addResolver(new PathResourceResolver() {
-                  @Override
-                  protected Resource getResource(String resourcePath, Resource location) throws IOException {
-                      Resource resource = location.createRelative(resourcePath);
-
-                      if(resource.exists() && resource.isReadable()) {
-                          return resource;
-                      }
-
-                      return new ClassPathResource("/static/index.html");
-                  }
-                });
-    }
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                //.allowedOrigins("*")
-                .allowedOriginPatterns("*")
-                .allowedMethods("*")
-                .allowCredentials(true);
     }
 
 }
