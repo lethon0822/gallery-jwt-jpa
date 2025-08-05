@@ -1,0 +1,50 @@
+package com.green.gallery_jwt_jpa.application.order;
+
+import com.green.gallery_jwt_jpa.application.order.model.OrderDetailGetReq;
+import com.green.gallery_jwt_jpa.application.order.model.OrderDetailGetRes;
+import com.green.gallery_jwt_jpa.application.order.model.OrderGetRes;
+import com.green.gallery_jwt_jpa.application.order.model.OrderPostReq;
+import com.green.gallery_jwt_jpa.config.model.UserPrincipal;
+
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Slf4j
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/v1/order")
+public class OrderController {
+    private final OrderService orderService;
+
+    @PostMapping
+    public ResponseEntity<?> add(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody OrderPostReq req) {
+        long logginedMemberId = userPrincipal.getMemberId();
+        log.info("req: {}", req);
+        int result = orderService.saveOrder(req, logginedMemberId);
+        return ResponseEntity.ok(result);
+        //return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> findAllByMemberIdOrderByIdDesc(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+        long logginedMemberId = userPrincipal.getMemberId();
+        List<OrderGetRes> result = orderService.findAllByMemberId(logginedMemberId);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<?> findDetail(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable int orderId) {
+        long logginedMemberId = userPrincipal.getMemberId();
+        OrderDetailGetReq req = new OrderDetailGetReq();
+        req.setOrderId(orderId);
+        req.setMemberId(logginedMemberId);
+        OrderDetailGetRes result = orderService.detail(req);
+        return ResponseEntity.ok(result);
+    }
+}

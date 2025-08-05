@@ -1,0 +1,17 @@
+package com.green.gallery_jwt_jpa.application.account.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.green.gallery_jwt_jpa.config.model.JwtUser;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
+
+@Getter
+@Setter
+public class AccountLoginRes {
+    private long id;
+//    @JsonIgnore
+//    private String loginPw;
+    @JsonIgnore
+    private JwtUser jwtUser;
+}
