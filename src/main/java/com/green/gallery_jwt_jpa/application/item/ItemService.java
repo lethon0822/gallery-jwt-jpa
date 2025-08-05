@@ -4,12 +4,14 @@ import com.green.gallery_jwt_jpa.application.item.model.ItemGetRes;
 import com.green.gallery_jwt_jpa.application.item.model.ItemPostReq;
 import com.green.gallery_jwt_jpa.config.util.MyFileUtils;
 
+import com.green.gallery_jwt_jpa.entity.Items;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -17,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemService {
     private final ItemMapper itemMapper;
+    private final ItemRepository itemRepository;
     private final MyFileUtils myFileUtils;
 
     public int save(MultipartFile img, ItemPostReq req) {
@@ -38,7 +41,21 @@ public class ItemService {
         return 1;
     }
 
-    public List<ItemGetRes> findAll(List<Integer> ids) {
-        return itemMapper.findAllByIdIn(ids);
+    public List<ItemGetRes> findAll(List<Long> ids) {
+        log.info("ids: {}", ids);
+        List<Items> list = null;
+        if(ids == null || ids.isEmpty()) {
+            list = itemRepository.findAll();
+        } else {
+            list = itemRepository.findAllByIdIn(ids);
+        }
+
+        List<ItemGetRes> resultList = new ArrayList<>();
+        for(Items item : list) {
+            ItemGetRes itemGetRes = new ItemGetRes(item.getId(), item.getName(), item.getImgPath(), item.getPrice(), item.getDiscountPer());
+            resultList.add(itemGetRes);
+        }
+        return resultList;
+        //return itemMapper.findAllByIdIn(ids);
     }
 }
