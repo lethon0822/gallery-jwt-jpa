@@ -32,21 +32,9 @@ public class AccountService {
         members.setLoginPw(hashedPw);
         members.setName(req.getName());
 
-        MembersRolesIds membersRolesIds = new MembersRolesIds();
-        membersRolesIds.setRoleName("ROLE_USER_1");
-
-        MembersRoles membersRoles = new MembersRoles();
-        membersRoles.setMembersRolesIds(membersRolesIds);
-        membersRoles.setMembers(members);
-
-        List<MembersRoles> membersRolesList = new ArrayList<>();
-        membersRolesList.add(membersRoles);
-
-        members.setRoles(membersRolesList);
+        members.addRole("ROLE_USER_1");
 
         accountRepository.save(members);
-
-        //return accountMapper.save(changedReq);
         return 1;
     }
 
