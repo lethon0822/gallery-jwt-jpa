@@ -8,9 +8,9 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ItemPostReq {
-    private int id;
+    //private int id; //mapper 에서 pk를 가져오기 위해 사용함
     private String name;
-    private String imgPath;
+    //private String imgPath; //mapper에서 사진 경로 저장하기 위해 사용함
     private int price;
     private int discountPer;
 }
