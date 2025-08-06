@@ -40,8 +40,7 @@ public class AccountService {
         if(members == null || !BCrypt.checkpw(req.getLoginPw(), members.getLoginPw())) {
             return null; //return null; 처리
         }
-        //로그인 성공!!! 로그인 한 사용자의 role가져오기~
-        //호출해주세요
+        //로그인 한 사용자의 role가져오기
         List<String> roles = members.getRoles().stream().map(item -> item.getMembersRolesIds()
                                                                          .getRoleName()
                                                             ).collect(Collectors.toList());

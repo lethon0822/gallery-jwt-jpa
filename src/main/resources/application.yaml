@@ -1,6 +1,6 @@
 constants:
   file:
-    directory: D:/ParkDoheum/2025/2025-04-msa/backend/upload/gallery
+    directory: D:\student\jyj\backend\upload
   jwt:
     issuer: green502@green.com #토큰 발행자
     bearer-format: JWT
